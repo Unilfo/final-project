@@ -1,18 +1,46 @@
-import React from "react"
-import {useSelector} from "react-redux";
-import {Image} from "react-bootstrap";
+import React, {useEffect, useState} from "react"
+import {useSelector} from "react-redux"
+import {Card} from "react-bootstrap"
 
-const PokemonDetails = (props) => {
-    console.log(props.match.params.id)
-    const pokemon = useSelector(state => state.pokemons[props.match.params.id -1 ])
+const PokemonDetails = ({itemId}) => {
+    let pokemon = useSelector(state => state.pokemons[itemId -1])
+    const [item, setItem] = useState('')
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        if(!pokemon){
+            setLoading(true)
+            const url = `http://localhost:3001/pokemons/${itemId}`
+            const fetchData = async () => {
+                try {
+                    const response = await fetch(url)
+                    const json = await response.json()
+                    setItem(json)
+                    setLoading(false)
+                } catch (error) {
+                    console.log("error", error)
+                }
+            }
+            fetchData()
+        }else{
+            setItem(pokemon)
+        }
+    }, [itemId, pokemon])
+
+    if(loading){
+        return <div>Loading</div>
+    }
 
     return (
-        <div>
-                <h5>PokemonDetails</h5>
-                <div>{pokemon?.id || 0}</div>
-                <div>{pokemon?.name || 0}</div>
-                <Image src={`http://localhost:3000/images/pokemons/${pokemon?.id || props.match.params.id}.png`} rounded />
-            </div>
+        <Card style={{ width: '18rem', display: 'flex', flexDirection: 'row'}}>
+            <Card.Img variant="top" src={`http://localhost:3000/images/pokemons/${item.id}.png`} />
+            <Card.Body>
+                <Card.Title>{item.id} </Card.Title>
+                <Card.Text>
+                    {item.name}
+                </Card.Text>
+            </Card.Body>
+        </Card>
     )
 }
 

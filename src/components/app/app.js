@@ -13,7 +13,11 @@ function App() {
           <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/pokemons" exact component={CapturedPokemons}/>
-              <Route path="/pokemons/:id" component={PokemonDetails}/>
+              <Route path="/pokemons/:id"
+                     render={({ match }) => {
+                         const { id } = match.params;
+                         return <PokemonDetails itemId={id} />
+                     }}/>
           </Switch>
       </Container>
   );
