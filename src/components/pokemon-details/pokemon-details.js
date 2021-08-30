@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react"
 import {useSelector} from "react-redux"
 import {Card} from "react-bootstrap"
+import './style.scss'
 
 const PokemonDetails = ({itemId}) => {
     let pokemon = useSelector(state => state.pokemons[itemId -1])
@@ -32,15 +33,17 @@ const PokemonDetails = ({itemId}) => {
     }
 
     return (
-        <Card style={{ width: '18rem', display: 'flex', flexDirection: 'row'}}>
-            <Card.Img variant="top" src={`http://localhost:3000/images/pokemons/${item.id}.png`} />
-            <Card.Body>
-                <Card.Title>{item.id} </Card.Title>
-                <Card.Text>
-                    {item.name}
-                </Card.Text>
-            </Card.Body>
-        </Card>
+        <div className='pk-details'>
+            <Card className='pk-details' style={{ width: '18rem', display: 'flex', flexDirection: 'row'}}>
+                <Card.Img variant="top" src={`http://localhost:3000/images/pokemons/${item.id}.png`} />
+                <Card.Body>
+                    <Card.Title>№ {item.id} </Card.Title>
+                    <Card.Text>
+                        {item.name}
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        </div>
     )
 }
 

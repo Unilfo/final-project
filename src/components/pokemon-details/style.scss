@@ -1,0 +1,16 @@
+.pk-details{
+  margin-left: 100px;
+  margin-top: 20px;
+}
+@media screen and (max-width: 500px){
+  .pk-details{
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 400px){
+.pk-details{
+      display: flex;
+      flex-flow: column!important;
+    }
+}
