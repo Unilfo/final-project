@@ -4,7 +4,7 @@ import {Card} from "react-bootstrap"
 import './style.scss'
 
 const PokemonDetails = ({itemId}) => {
-    let pokemon = useSelector(state => state.pokemons[itemId -1])
+    let pokemon = useSelector(state => state.pokemons[itemId - 1])
     const [item, setItem] = useState('')
     const [loading, setLoading] = useState(false)
 
