@@ -1,10 +1,10 @@
 import './app.css'
 import Header from '../header'
 import {Route, Switch} from "react-router-dom"
-import Home from "../home"
-import PokemonDetails from "../pokemon-details"
-import CapturedPokemons from "../captured-pokemons"
-import {Container} from "react-bootstrap"
+import Home             from "../../pages/home"
+import PokemonDetails   from "../../pages/pokemon-details"
+import CapturedPokemons from "../../pages/captured-pokemons"
+import {Container}      from "react-bootstrap"
 
 function App() {
   return (

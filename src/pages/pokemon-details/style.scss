@@ -1,0 +1,18 @@
+.pk-details{
+  margin-left: 100px;
+  margin-top: 20px;
+}
+.card_img{
+  width: 300px!important;
+}
+@media screen and (max-width: 900px){
+  .pk-details{
+    margin-left: 0;
+    margin-top: 20px;
+    &_card{
+      width: 23rem;
+      flex-direction: column!important;
+    }
+  }
+}
+

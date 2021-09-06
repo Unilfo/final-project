@@ -1,18 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react'
-import CardDetail from "../card"
-import {Button, Col, Container, Row} from "react-bootstrap"
-import {useDispatch, useSelector} from "react-redux"
-import {loadPokemons} from "../../reducer"
+import CardDetail                           from "../../components/card"
+import {Button, Col, Container, Row}        from "react-bootstrap"
+import {useSelector}           from "react-redux"
 
 const Home = () => {
-    const dispatch = useDispatch()
-
-    useEffect(()=>{
-        dispatch(loadPokemons());
-    },[dispatch])
-
     const pokemons = useSelector((state) => state.pokemons)
-
+    const loading = useSelector((state) => state.loading)
     const [noOfElement, setnoOfElement] = useState(10)
     const slice = pokemons.slice(0, noOfElement)
     const messagesEndRef = useRef(null)
@@ -25,6 +18,15 @@ const Home = () => {
 
     const loadMore = () => {
         setnoOfElement(noOfElement + 5)
+    }
+
+    if(loading){
+        return (
+          <div>
+            <div>Loading</div>
+            <div ref={messagesEndRef} />
+          </div>
+      )
     }
 
     return (
